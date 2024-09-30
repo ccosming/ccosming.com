@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 
+import { ThemeToggle } from '@/components/theme-toogle';
 import { Button } from '@/components/ui/button';
 
 import Avatar from './images/me.png';
@@ -32,6 +33,8 @@ export default function Home() {
 
         <Button>My work</Button>
         <Button variant="outline">My journal</Button>
+
+        <ThemeToggle />
       </div>
     </div>
   );
