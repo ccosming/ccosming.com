@@ -56,8 +56,8 @@ export default async function Home() {
                   alt={`Cover image for ${page.title}`}
                   width={400}
                   height={200}
-                  loading="eager"
                   quality={10}
+                  priority
                 />
               )}
 
