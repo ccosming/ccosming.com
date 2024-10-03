@@ -1,6 +1,7 @@
 import localFont from 'next/font/local';
 
 import { ThemeProvider } from '@/components/theme-provider';
+import { ThemeToggle } from '@/components/theme-toogle';
 
 import './globals.css';
 
@@ -30,7 +31,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <div className="relative">
+            <div className="absolute right-10 top-5">
+              <ThemeToggle />
+            </div>
+            {children}
+          </div>
         </ThemeProvider>
       </body>
     </html>
