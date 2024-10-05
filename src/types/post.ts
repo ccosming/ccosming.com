@@ -5,6 +5,7 @@ export class Post {
   constructor(
     public id: string,
     public title: string,
+    public synopsis: string,
     public cover: string | undefined,
     public tags: string[],
     public created: string,

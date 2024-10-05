@@ -1,5 +1,7 @@
 import { DateTime } from 'luxon';
 import Image from 'next/image';
+import Link from 'next/link';
+import { FC } from 'react';
 
 import {
   Card,
@@ -12,42 +14,62 @@ import {
 import { Post } from '@/types';
 
 import { Badge } from './ui/badge';
+import { Button } from './ui/button';
+
+const PostHeader: FC<Pick<Post, 'title' | 'cover' | 'tags' | 'created'>> = ({
+  title,
+  cover,
+  tags,
+  created,
+}) => {
+  return (
+    <CardHeader>
+      <div className="relative">
+        {cover && (
+          <Image
+            className="w-full h-48 rounded-sm"
+            src={cover}
+            alt={`Cover image for ${title}`}
+            width={300}
+            height={180}
+            quality={10}
+            priority
+          />
+        )}
+
+        <div className="flex absolute bottom-2 left-2">
+          {tags.map((tag, key) => (
+            <Badge variant="default" key={key}>
+              {tag}
+            </Badge>
+          ))}
+        </div>
+      </div>
+
+      <CardDescription>
+        {DateTime.fromISO(created)
+          .setLocale('es')
+          .toLocaleString(DateTime.DATETIME_MED_WITH_WEEKDAY)}
+      </CardDescription>
+    </CardHeader>
+  );
+};
 
 export const PostList: React.FC<{ posts: Post[] }> = ({ posts }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 text-left">
-      {posts.map(({ id, cover, title, tags, created }) => (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
+      {posts.map(({ id, cover, title, synopsis, tags, created }) => (
         <Card key={id}>
-          <CardHeader>
-            <CardTitle>{title}</CardTitle>
-            <CardDescription>Deploy your new project in one-click.</CardDescription>
-            <CardDescription>
-              {DateTime.fromISO(created).setLocale('es').toLocaleString(DateTime.DATETIME_MED)}
-            </CardDescription>
-          </CardHeader>
-
+          <PostHeader title={title} cover={cover} tags={tags} created={created} />
           <CardContent>
-            {cover && (
-              <Image
-                className="w-full h-48 rounded-sm"
-                src={cover}
-                alt={`Cover image for ${title}`}
-                width={400}
-                height={200}
-                quality={10}
-                priority
-              />
-            )}
+            <CardTitle>{title}</CardTitle>
+            <CardDescription className="line-clamp-3">{synopsis}</CardDescription>
           </CardContent>
 
           <CardFooter>
-            <div className="flex">
-              {tags.map((tag, key) => (
-                <Badge variant="outline" key={key}>
-                  {tag}
-                </Badge>
-              ))}
-            </div>
+            <Button asChild>
+              <Link href={`/blog/${id}`}>Read more</Link>
+            </Button>
           </CardFooter>
         </Card>
       ))}

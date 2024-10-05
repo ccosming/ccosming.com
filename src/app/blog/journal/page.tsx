@@ -1,6 +1,14 @@
+import { type Metadata } from 'next';
+
 import { getPosts } from '@/actions';
 import { PostList } from '@/components/post-list';
 import { Container } from '@/components/ui/container';
+
+export const metadata: Metadata = {
+  title:
+    'Carlos Journal | Pensamientos y experiencias en el dificil pero disfrutable camino de construir una startup',
+  description: 'Welcome to my world',
+};
 
 export default async function JournalPage() {
   const posts = await getPosts('journal');

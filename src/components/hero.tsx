@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
 
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import { Avatar, AvatarImage } from './ui/avatar';
 import { Button, ButtonProps } from './ui/button';
 
 interface HeroProps {
@@ -20,7 +20,13 @@ export const Hero: FC<HeroProps> = ({ title, subtitle, buttons }) => {
     <div className="w-[780px] mx-auto h-screen flex flex-col items-center justify-center gap-5">
       <Avatar className="size-40">
         <AvatarImage asChild src="https://github.com/ccosming.png">
-          <Image src="https://github.com/ccosming.png" alt="logo" width={200} height={200} />
+          <Image
+            src="https://github.com/ccosming.png"
+            alt="logo"
+            width={200}
+            height={200}
+            priority
+          />
         </AvatarImage>
       </Avatar>
 

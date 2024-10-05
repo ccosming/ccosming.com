@@ -14,7 +14,7 @@ export default async function Home() {
       subtitle="I'm a software engineer and entrepreneur with a passion for building products and companies that make a difference in the world. Currently, I'm working on my startup, Dynamic Quants."
       buttons={[
         { text: 'Blog', link: '/blog', variant: 'default' },
-        { text: 'Journal', link: '/journal', variant: 'outline' },
+        { text: 'Journal', link: '/blog/journal', variant: 'outline' },
       ]}
     />
   );

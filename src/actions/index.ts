@@ -1,2 +1,1 @@
-export * from './getPosts';
-export * from './getPage';
+export * from './posts';
