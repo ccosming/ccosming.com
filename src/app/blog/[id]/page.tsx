@@ -1,9 +1,7 @@
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import { twMerge } from 'tailwind-merge';
 
 import { getPostInfo } from '@/actions/posts';
-import { Container } from '@/components/ui/container';
 import { Markdown } from '@/components/ui/markdown';
 
 export default async function Page({ params }: { params: { id: string } }) {
